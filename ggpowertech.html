@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GG Power Tech - Smart Energy & Technology Solutions</title>
+    
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #D4AF37;
+            --dark-gold: #B8962E;
+            --black: #0a0a0a;
+            --dark-bg: #111111;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 30px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navbar */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--primary-gold), var(--dark-gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px var(--primary-gold);
+            animation: logoGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            from { box-shadow: 0 0 30px var(--primary-gold); }
+            to { box-shadow: 0 0 50px var(--primary-gold), 0 0 70px var(--primary-gold); }
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-gold), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            color: #ccc;
+            font-weight: 300;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, var(--primary-gold), var(--dark-gold));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-content h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ffffff, var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-gold), var(--dark-gold));
+            color: var(--black);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid var(--primary-gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-gold);
+            color: var(--black);
+            transform: translateY(-5px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, #ffffff, var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Service/Product Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-gold);
+        }
+
+        .card.selected {
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(45deg, var(--primary-gold), var(--dark-gold));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+
+        /* Order System */
+        .order-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem auto;
+            max-width: 800px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .step-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .service-grid, .product-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .service-grid.active, .product-grid.active {
+            display: grid;
+        }
+
+        .selected-item {
+            background: var(--glass-bg);
+            border: 2px solid var(--primary-gold);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary-gold);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Success Popup */
+        .success-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, var(--primary-gold), var(--dark-gold));
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-hover);
+            z-index: 2000;
+            animation: popupSlide 0.5s ease;
+        }
+
+        @keyframes popupSlide {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1500;
+        }
+
+        .overlay.active, .success-popup.active {
+            display: block;
+        }
+
+        /* About & Contact */
+        .about-content, .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .contact-item {
+            background: var(--glass-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-gold);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-bg);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-gold);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            color: #666;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .step-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cards-grid, .service-grid, .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .order-section {
+                padding: 2rem;
+                margin: 2rem 1rem;
+            }
+
+            .section {
+                padding: 60px 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo">GG</div>
+                <div>
+                    <h1>GG Power Tech</h1>
+                    <div class="tagline">Smart Energy & Technology Solutions</div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#products" class="nav-link">Products</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Powering Smart Technology & Energy Solutions</h2>
+            <p>GG Power Tech delivers professional solar, security, automation, EV repair, and electrical solutions with modern technology and trusted service.</p>
+            <div class="cta-buttons">
+                <a href="#order" class="btn btn-primary">Explore Services</a>
+                <a href="#contact" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <h2 class="section-title">Our Services</h2>
+        <div class="cards-grid">
+            <div class="card" data-service="Solar Solutions">
+                <div class="card-icon">☀️</div>
+                <h3>Solar Solutions</h3>
+                <p>Professional solar panel installation and maintenance for homes and businesses.</p>
+            </div>
+            <div class="card" data-service="CCTV Security">
+                <div class="card-icon">📹</div>
+                <h3>CCTV Security</h3>
+                <p>Advanced CCTV systems with 24/7 monitoring and smart security features.</p>
+            </div>
+            <div class="card" data-service="Home Automation">
+                <div class="card-icon">🏠</div>
+                <h3>Home Automation</h3>
+                <p>Smart home systems for lighting, security, and energy management.</p>
+            </div>
+            <div class="card" data-service="D2H Services">
+                <div class="card-icon">📡</div>
+                <h3>D2H Services</h3>
+                <p>Complete D2H installation and service with HD quality channels.</p>
+            </div>
+            <div class="card" data-service="EV Scooter Repair">
+                <div class="card-icon">🔋</div>
+                <h3>EV Scooter Repair</h3>
+                <p>Expert electric scooter repair and maintenance services.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section">
+        <h2 class="section-title">Our Products</h2>
+        <div class="cards-grid">
+            <div class="card" data-product="Solar Items">
+                <div class="card-icon">☀️</div>
+                <h3>Solar Products</h3>
+                <p>High-quality solar panels, inverters, and accessories.</p>
+            </div>
+            <div class="card" data-product="CCTV Products">
+                <div class="card-icon">📹</div>
+                <h3>CCTV Products</h3>
+                <p>Premium CCTV cameras and security systems.</p>
+            </div>
+            <div class="card" data-product="Electrical Items">
+                <div class="card-icon">⚡</div>
+                <h3>Electrical Items</h3>
+                <p>Wiring, switches, and electrical accessories.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order System -->
+    <section id="order" class="section">
+        <div class="order-section">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary-gold);">Place Your Order</h2>
+            
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">What are you looking for?</p>
+                <div class="step-buttons">
+                    <button class="btn btn-primary" onclick="showServices()">Services</button>
+                    <button class="btn btn-secondary" onclick="showProducts()">Products</button>
+                </div>
+            </div>
+
+            <div id="services-grid" class="service-grid"></div>
+            <div id="products-grid" class="product-grid"></div>
+
+            <div id="selected-item" class="selected-item" style="display: none;"></div>
+
+            <form id="order-form">
+                <div class="form-group">
+                    <label>Other Requirements (Optional)</label>
+                    <textarea rows="3" id="other-requirements" placeholder="Any specific requirements..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="customer-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="phone-number" required placeholder="e.g. 9901929626">
+                </div>
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;">Confirm Order</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About GG Power Tech</h2>
+        <div class="about-content">
+            <p>GG Power Tech provides modern technology and energy solutions with trusted service, quality products, and innovative systems for homes and businesses. We specialize in delivering cutting-edge solar solutions, advanced security systems, smart home automation, and professional EV maintenance services.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section - UPDATED CONTACT DETAILS -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">📞</div>
+                    <h3>Phone</h3>
+                    <p><strong>+91 9901929626</strong></p>
+                </div>
+                <div class="contact-item">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">✉️</div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:ishwaralagawadi123@gmail.com" style="color: var(--primary-gold); font-weight: 500;">ishwaralagawadi123@gmail.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">📍</div>
+                    <h3>Location</h3>
+                    <p><strong>Timmapur, Tq Shiggon<br>Dt Haveri, Karnataka</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - UPDATED EMAIL -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">
+                    <div class="logo" style="width: 50px; height: 50px;"></div>
+                    <h2 style="margin: 0; color: var(--primary-gold);">GG Power Tech</h2>
+                </div>
+                <p>Smart Energy & Technology Solutions<br>📍 Timmapur, Tq Shiggon, Dt Haveri</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul style="list-style: none;">
+                    <li><a href="#home" style="color: #ccc; text-decoration: none;">Home</a></li>
+                    <li><a href="#services" style="color: #ccc; text-decoration: none;">Services</a></li>
+                    <li><a href="#products" style="color: #ccc; text-decoration: none;">Products</a></li>
+                    <li><a href="#contact" style="color: #ccc; text-decoration: none;">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact Info</h4>
+                <p>📞 +91 9901929626</p>
+                <p>✉️ <a href="mailto:ishwaralagawadi123@gmail.com" style="color: var(--primary-gold);">ishwaralagawadi123@gmail.com</a></p>
+                <div class="social-icons">
+                    <a href="#">📘</a>
+                    <a href="#">📷</a>
+                    <a href="#">🐦</a>
+                    <a href="#">💼</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 GG Power Tech. Timmapur, Tq Shiggon, Dt Haveri. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Success Popup -->
+    <div class="overlay" id="overlay"></div>
+    <div class="success-popup" id="success-popup">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
+        <h2>Order Submitted Successfully!</h2>
+        <p>GG Power Tech will contact you soon on <strong>+91 9901929626</strong></p>
+    </div>
+
+    <script>
+        // EmailJS Configuration - UPDATED EMAIL
+        emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS Public Key
+
+        // Order System Variables
+        let selectedItem = '';
+        let currentStep = 'initial';
+
+        // Services and Products Data
+        const services = [
+            { name: 'Solar Solutions', icon: '☀️' },
+            { name: 'CCTV Security', icon: '📹' },
+            { name: 'Home Automation', icon: '🏠' },
+            { name: 'D2H Services', icon: '📡' },
+            { name: 'EV Scooter Repair', icon: '🔋' }
+        ];
+
+        const products = [
+            { name: 'Solar Items', icon: '☀️' },
+            { name: 'CCTV Products', icon: '📹' },
+            { name: 'Electrical Items', icon: '⚡' }
+        ];
+
+        // Show Services
+        function showServices() {
+            document.getElementById('services-grid').innerHTML = services.map(item => 
+                `<div class="card" onclick="selectItem('${item.name}', this)">
+                    <div class="card-icon">${item.icon}</div>
+                    <h3>${item.name}</h3>
+                </div>`
+            ).join('');
+            document.getElementById('services-grid').classList.add('active');
+            document.getElementById('products-grid').classList.remove('active');
+            document.getElementById('selected-item').style.display = 'none';
+            currentStep = 'services';
+        }
+
+        // Show Products
+        function showProducts() {
+            document.getElementById('products-grid').innerHTML = products.map(item => 
+                `<div class="card" onclick="selectItem('${item.name}', this)">
+                    <div class="card-icon">${item.icon}</div>
+                    <h3>${item.name}</h3>
+                </div>`
+            ).join('');
+            document.getElementById('products-grid').classList.add('active');
+            document.getElementById('services-grid').classList.remove('active');
+            document.getElementById('selected-item').style.display = 'none';
+            currentStep = 'products';
+        }
+
+        // Select Item
+        function selectItem(itemName, element) {
+            selectedItem = itemName;
+            
+            // Remove previous selection
+            document.querySelectorAll('.card').forEach(card => card.classList.remove('selected'));
+            
+            // Highlight selected card
+            element.classList.add('selected');
+            
+            // Show selected item
+            document.getElementById('selected-item').innerHTML = `Selected: <strong>${itemName}</strong>`;
+            document.getElementById('selected-item').style.display = 'block';
+        }
+
+        // Order Form Submission - UPDATED EMAIL
+        document.getElementById('order-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validation
+            const name = document.getElementById('customer-name').value.trim();
+            const phone = document.getElementById('phone-number').value.trim();
+            
+            if (!name || !phone || !selectedItem) {
+                alert('Please fill all required fields and select a service/product.');
+                return;
+            }
+
+            // Order Data
+            const orderData = {
+                item: selectedItem,
+                otherRequirements: document.getElementById('other-requirements').value || 'None',
+                customerName: name,
+                phoneNumber: phone,
+                dateTime: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+                businessEmail: 'ishwaralagawadi123@gmail.com',
+                businessPhone: '+91 9901929626'
+            };
+
+            // Save to localStorage
+            const orders = JSON.parse(localStorage.getItem('ggOrders') || '[]');
+            orders.push(orderData);
+            localStorage.setItem('ggOrders', JSON.stringify(orders));
+
+            // Send Email Notification
+            sendEmailNotification(orderData);
+
+            // Show Success Popup
+            showSuccessPopup();
+
+            // Clear Form
+            this.reset();
+            document.getElementById('selected-item').style.display = 'none';
+            selectedItem = '';
+        });
+
+        // Send Email Notification - UPDATED EMAIL
+        function sendEmailNotification(orderData) {
+            const templateParams = {
+                selected_item: orderData.item,
+                other_requirement: orderData.otherRequirements,
+                customer_name: orderData.customerName,
+                phone_number: orderData.phoneNumber,
+                date_time: orderData.dateTime,
+                business_phone: orderData.businessPhone
+            };
+
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", templateParams)
+                .then(() => console.log('✅ Order notification sent to ishwaralagawadi123@gmail.com'))
+                .catch((error) => console.log('Email error:', error));
+        }
+
+        // Show Success Popup - UPDATED PHONE
+        function showSuccessPopup() {
+            document.getElementById('success-popup').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        // Close Popup
+        document.getElementById('overlay').addEventListener('click', function() {
+            document.getElementById('success-popup').classList.remove('active');
+            this.classList.remove('active');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+                header.style.padding = '0.5rem 0';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.padding = '1rem 0';
+            }
+        });
+
+        // View Orders (Admin Feature)
+        console.log('📱 Business Contact: +91 9901929626');
+        console.log('📧 Business Email: ishwaralagawadi123@gmail.com');
+        console.log('📍 Location: Timmapur, Tq Shiggon, Dt Haveri');
+        console.log('💾 View orders in localStorage: localStorage.getItem("ggOrders")');
+    </script>
+</body>
+</html>
